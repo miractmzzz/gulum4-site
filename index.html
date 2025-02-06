@@ -59,7 +59,6 @@
             transform: translateY(20px);
             transition: opacity 1s ease-out, transform 1s ease-out;
         }
-        /* Son fotoğrafın altındaki yazı için animasyonu kaldır */
         .no-animation {
             opacity: 1 !important;
             transform: none !important;
@@ -67,37 +66,22 @@
         }
     </style>
 </head>
-<audio id="background-music" loop>
-    <source src="/intihaask.mp3" type="audio/mpeg">
-</audio>
+<body>
+    <audio id="background-music" autoplay loop>
+        <source src="/intihaask.mp3" type="audio/mpeg">
+    </audio>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        let audio = document.getElementById("background-music");
-
-        // Otomatik çalmaya çalış
-        let playPromise = audio.play();
-
-        // Eğer tarayıcı engellerse, ekrana buton ekle
-        if (playPromise !== undefined) {
-            playPromise.then(() => {
-                console.log("Müzik otomatik oynatılıyor.");
-            }).catch(error => {
-                console.log("Tarayıcı oto
-
-<div class="container">
+    <div class="container">
         <h1>Gülüm, Seni Çok Seviyorum</h1>
         
         <div class="image-container">
             <img src="https://raw.githubusercontent.com/miractmz/gulum2-site/main/images/ilk-gordugum.jpg" alt="İlk Gördüğüm Fotoğraf">
-            <p class="text">💝Beni sana çeken şey neydi bilmiyorum… Ama bu fotoğrafı senin profilinde ilk gördüğüm an, seni gördüğüm o gece, bir şeylerin değişeceğini hissetmiştim güzelim.💕
-</p>
+            <p class="text">💝Beni sana çeken şey neydi bilmiyorum… Ama bu fotoğrafı senin profilinde ilk gördüğüm an, seni gördüğüm o gece, bir şeylerin değişeceğini hissetmiştim güzelim.💕</p>
         </div>
         
         <div class="image-container">
             <img src="https://raw.githubusercontent.com/miractmz/gulum2-site/main/images/bebeklik-yeni.jpg" alt="Bebeklik ve Yeni Hali">
-            <p class="text">💖 Senin gülüşün benim yaşama amacım, bana amacımı geri ver Defne'mm..
-</p>
+            <p class="text">💖 Senin gülüşün benim yaşama amacım, bana amacımı geri ver Defne'mm..</p>
         </div>
         
         <div class="image-container">
@@ -107,21 +91,20 @@
         
         <div class="image-container">
             <img src="https://raw.githubusercontent.com/miractmz/gulum2-site/main/images/uyurken.jpg" alt="Uyurken">
-            <p class="text">💗Gözlerin, anlatamadığım cümlelerin en güzel özetiydi balımmm...
-</p>
+            <p class="text">💗Gözlerin, anlatamadığım cümlelerin en güzel özetiydi balımmm...</p>
         </div>
 
-        
         <div class="image-container show">
             <img src="https://raw.githubusercontent.com/miractmz/gulum2-site/main/images/son-fotograf.jpg" alt="Son Fotoğraf">
             <p class="text">💞Sana her baktığımda, içimde binlerce kelebek kanat çırpıyor… Sen benim en güzel baharımsın kurban olduğum.💗</p>
         </div>
   
-    <div class="image-container show">
+        <div class="image-container show">
             <img src="https://raw.githubusercontent.com/miractmzz/gulum3-site/main/images/son1-fotograf.jpg" alt="Son Fotoğraf 2">
             <p class="text no-animation">💘Yaşattığım her acı için özür dilerim bitanem, oğluşun seni herşeyden çok seviyor.🫀</p>
         </div>
     </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             let images = document.querySelectorAll(".image-container");
@@ -140,43 +123,22 @@
                         img.classList.add("hide");
                     }
                 });
-                
-                texts.forEach((txt) => {
-                    if (!txt.classList.contains("no-animation")) {
-                        let rect = txt.getBoundingClientRect();
-                        if (rect.top < scrollPosition && rect.bottom > 0) {
-                            txt.classList.add("show");
-                            txt.classList.remove("hide");
-                        } else {
-                            txt.classList.remove("show");
-                            txt.classList.add("hide");
-                        }
-                    }
-                });
             }
             
             window.addEventListener("scroll", revealOnScroll);
             revealOnScroll();
+
+            let audio = document.getElementById("background-music");
+            let playPromise = audio.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log("Tarayıcı otomatik oynatmayı engelledi, tıklayın.");
+                    document.addEventListener("click", function() {
+                        audio.play();
+                    }, { once: true });
+                });
+            }
         });
     </script>
-<audio id="background-music" autoplay loop>
-    <source src="/intihaask.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        let audio = document.getElementById("background-music");
-        let playPromise = audio.play();
-        if (playPromise !== undefined) {
-            playPromise.catch(error => {
-                console.log("Tarayıcı otomatik oynatmayı engelledi, kullanıcı etkileşimi bekleniyor.");
-                document.addEventListener("click", function() {
-                    audio.play();
-                    console.log("Müzik tıklamayla başlatıldı.");
-                }, { once: true });
-            });
-        }
-    });
-</script>
 </body>
 </html>
