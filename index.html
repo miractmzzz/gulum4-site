@@ -106,39 +106,40 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            let images = document.querySelectorAll(".image-container");
-            let texts = document.querySelectorAll(".text");
-            
-            function revealOnScroll() {
-                let scrollPosition = window.innerHeight * 0.8;
-                
-                images.forEach((img) => {
-                    let rect = img.getBoundingClientRect();
-                    if (rect.top < scrollPosition && rect.bottom > 0) {
-                        img.classList.add("show");
-                        img.classList.remove("hide");
-                    } else {
-                        img.classList.remove("show");
-                        img.classList.add("hide");
-                    }
-                });
-            }
-            
-            window.addEventListener("scroll", revealOnScroll);
-            revealOnScroll();
+    document.addEventListener("DOMContentLoaded", function() {
+        let elements = document.querySelectorAll(".image-container, .text"); // Görseller + Yazılar
 
-            let audio = document.getElementById("background-music");
-            let playPromise = audio.play();
-            if (playPromise !== undefined) {
-                playPromise.catch(error => {
-                    console.log("Tarayıcı otomatik oynatmayı engelledi, tıklayın.");
-                    document.addEventListener("click", function() {
-                        audio.play();
-                    }, { once: true });
-                });
-            }
-        });
-    </script>
+        function revealOnScroll() {
+            let scrollPosition = window.innerHeight * 0.8;
+
+            elements.forEach((el) => {
+                let rect = el.getBoundingClientRect();
+                if (rect.top < scrollPosition && rect.bottom > 0) {
+                    el.classList.add("show");
+                    el.classList.remove("hide");
+                } else {
+                    el.classList.remove("show");
+                    el.classList.add("hide");
+                }
+            });
+        }
+
+        window.addEventListener("scroll", revealOnScroll);
+        revealOnScroll(); // Sayfa yüklendiğinde kontrol et
+
+        // **Müzik Otomatik Oynatma & Kullanıcı Etkileşimi ile Başlatma**
+        let audio = document.getElementById("background-music");
+        let playPromise = audio.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.log("Tarayıcı otomatik oynatmayı engelledi, tıklayın.");
+                document.addEventListener("click", function() {
+                    audio.play();
+                }, { once: true });
+            });
+        }
+    });
+</script>
+
 </body>
 </html>
