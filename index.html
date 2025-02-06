@@ -75,15 +75,25 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         let audio = document.getElementById("background-music");
-        audio.volume = 1.0;
-        audio.play().catch(error => console.log("Otomatik oynatma engellendi: " + error));
+        let playPromise = audio.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                console.log("Müzik oynatılıyor.");
+            }).catch(error => {
+                console.log("Tarayıcı otomatik oynatmayı engelledi, butona tıklayın.");
+                let button = document.createElement("button");
+                button.innerText = "Müziği Başlat";
+                button.onclick = () => {
+                    audio.play();
+                    button.remove();
+                };
+                document.body.appendChild(button);
+            });
+        }
     });
 </script>
-
-
-
-    
-    <div class="container">
+<div class="container">
         <h1>Gülüm, Seni Çok Seviyorum</h1>
         
         <div class="image-container">
