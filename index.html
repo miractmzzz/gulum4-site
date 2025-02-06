@@ -67,32 +67,24 @@
         }
     </style>
 </head>
-<body>
-    <audio id="background-music" loop>
+<audio id="background-music" loop>
     <source src="/intihaask.mp3" type="audio/mpeg">
 </audio>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         let audio = document.getElementById("background-music");
+
+        // Otomatik çalmaya çalış
         let playPromise = audio.play();
-        
+
+        // Eğer tarayıcı engellerse, ekrana buton ekle
         if (playPromise !== undefined) {
             playPromise.then(() => {
-                console.log("Müzik oynatılıyor.");
+                console.log("Müzik otomatik oynatılıyor.");
             }).catch(error => {
-                console.log("Tarayıcı otomatik oynatmayı engelledi, butona tıklayın.");
-                let button = document.createElement("button");
-                button.innerText = "Müziği Başlat";
-                button.onclick = () => {
-                    audio.play();
-                    button.remove();
-                };
-                document.body.appendChild(button);
-            });
-        }
-    });
-</script>
+                console.log("Tarayıcı oto
+
 <div class="container">
         <h1>Gülüm, Seni Çok Seviyorum</h1>
         
